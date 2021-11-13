@@ -12,15 +12,25 @@ export type CartItemType = {
   image: string;
   price: number;
   title: string;
+  amount: number;
 }
 
-const getProducts = async () => {
-  await (await fetch('https://fakestoreapi.com/products')).json();
+const getProducts = async (): Promise<CartItemType[]> => {
+  return await (await fetch('https://fakestoreapi.com/products')).json();
 }
 
 const App = () => {
+  const { data, isLoading, error } = useQuery<CartItemType[]>('products', getProducts)
+
+  const getTotalItems = () => null;
+
+  const handleAddToCart = () => null;
+
+  const handleRemoveToCart = () => null;
   
-  
+  if(isLoading) return <LinearProgress />
+  if(error) return <div>Something went wrong...</div>
+
   return (
     <div>
       App
