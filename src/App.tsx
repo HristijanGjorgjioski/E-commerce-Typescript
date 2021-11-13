@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { Badge, Drawer, Grid, LinearProgress } from '@material-ui/core'
-import { AddShoppingCart } from '@material-ui/icons'
-import { useQuery } from 'react-query'
+import React, { useState } from 'react';
+import { Badge, Drawer, Grid, LinearProgress } from '@material-ui/core';
+import { AddShoppingCart } from '@material-ui/icons';
+import { useQuery } from 'react-query';
 
-import { Wrapper } from './StyledComponents/App.styles'
+import { Wrapper } from './StyledComponents/App.styles';
+import Item from './Item/Item';
 
 export type CartItemType = {
   id: number;
@@ -33,7 +34,15 @@ const App = () => {
 
   return (
     <div>
-      App
+      <Wrapper>
+        <Grid container spacing={3}>
+          {data?.map((item) => (
+            <Grid item key={item.id} xs={12} sm={4}>
+              <Item item={item} handleAddToCart={handleAddToCart} />
+            </Grid>
+          ))}
+        </Grid>
+      </Wrapper>
     </div>
   )
 }
