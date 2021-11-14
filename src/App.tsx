@@ -3,13 +3,13 @@ import { Badge, Drawer, Grid, LinearProgress } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 import { useQuery } from 'react-query';
 
-import { Wrapper } from './StyledComponents/App.styles';
+import { Wrapper } from './App.styles';
 import Item from './Item/Item';
 
 export type CartItemType = {
   id: number;
   category: string;
-  decsription: string;
+  description: string;
   image: string;
   price: number;
   title: string;
