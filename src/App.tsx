@@ -27,10 +27,24 @@ const App = () => {
   const { data, isLoading, error } = useQuery<CartItemType[]>('products', getProducts)
 
   const getTotalItems = (items: CartItemType[]) => {
-    items.reduce((acc: number, item) => acc + item.amount, 0);
+    return items.reduce((acc: number, item) => acc + item.amount, 0);
   };
 
-  const handleAddToCart = (clickedItem: CartItemType) => null;
+  const handleAddToCart = (clickedItem: CartItemType) => {
+    setCartItems((prev) => {
+      const isItemInCart = prev.find((item) => item.id === clickedItem.id);
+
+      if(isItemInCart) {
+        return prev.map((item) => (
+          item.id === clickedItem.id
+            ? { ...item, amount: item.amount+1 }
+            : item
+        ))
+      }
+
+      return [...prev, { ...clickedItem, amount: 1 } ];
+    })
+  };
 
   const handleRemoveToCart = () => null;
   
@@ -43,7 +57,7 @@ const App = () => {
           <Cart cartItems={cartItems} addToCart={handleAddToCart} removeFromCart={handleRemoveToCart} />
         </Drawer>
         <StyledButton onClick={() => setCartOpen(true)}>
-          <Badge badgeContent={'2'} color='error'>
+          <Badge badgeContent={getTotalItems(cartItems)} color='error'>
             <AddShoppingCart />
           </Badge>
         </StyledButton>
