@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 
 import { StyledButton, Wrapper } from './App.styles';
 import Item from './Item/Item';
+import Cart from './Cart/Cart';
 
 export type CartItemType = {
   id: number;
@@ -39,7 +40,7 @@ const App = () => {
   return (
       <Wrapper>
         <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
-          Cart Goes Here
+          <Cart cartItems={cartItems} addToCart={handleAddToCart} removeFromCart={handleRemoveToCart} />
         </Drawer>
         <StyledButton onClick={() => setCartOpen(true)}>
           <Badge badgeContent={'2'} color='error'>
