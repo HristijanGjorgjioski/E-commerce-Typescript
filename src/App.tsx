@@ -42,7 +42,7 @@ const App = () => {
           Cart Goes Here
         </Drawer>
         <StyledButton onClick={() => setCartOpen(true)}>
-          <Badge badgeContent={getTotalItems(cartItems)} color='error'>
+          <Badge badgeContent={'2'} color='error'>
             <AddShoppingCart />
           </Badge>
         </StyledButton>

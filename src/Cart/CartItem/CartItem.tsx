@@ -1,9 +1,12 @@
 import React from 'react'
 
-const CartItem = () => {
+import { CartItemType } from '../../App'
+import { Wrapper } from './CartItem.styles'
+
+const CartItem: React.FC = () => {
     return (
         <div>
-            
+            Cart Item
         </div>
     )
 }
